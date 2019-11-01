@@ -9,7 +9,7 @@ import (
 
 func cptree(opts Opts) error {
 	if err := checkOpts(opts); err != nil {
-		return nil
+		return err
 	}
 
 	filepath.Walk(opts.src, func(path string, info os.FileInfo, err error) error {
@@ -98,11 +98,22 @@ func checkOpts(opts Opts) error {
 		return err
 	}
 
-	if _, err := os.Stat(opts.src); os.IsNotExist(err) {
+	srcInfo, err := os.Stat(opts.src)
+	if os.IsNotExist(err) {
 		return fmt.Errorf("src '%s' does not exist", opts.src)
 	}
-	if _, err := os.Stat(opts.dst); os.IsNotExist(err) {
-		return fmt.Errorf("dst '%s' does not exist", opts.dst)
+	if !srcInfo.IsDir() {
+		return fmt.Errorf("src '%s' is not a directory", opts.src)
+	}
+
+	dstInfo, err := os.Stat(opts.dst)
+	if os.IsNotExist(err) {
+		return os.MkdirAll(opts.dst, srcInfo.Mode())
+	} else if err != nil {
+		return err
+	}
+	if !dstInfo.IsDir() {
+		return fmt.Errorf("dst '%s' is not a directory", opts.src)
 	}
 	return nil
 }
