@@ -1,12 +1,11 @@
 # cptree
 
-[![GoDoc](https://godoc.org/github.com/wiggin77/cptree?status.svg)](https://godoc.org/github.com/wiggin77/cptree)
-[![Build Status](https://travis-ci.org/wiggin77/cptree.svg?branch=master)](https://travis-ci.org/wiggin77/cptree)
+[![Build Status](https://api.travis-ci.com/wiggin77/cptree.svg?branch=master)](https://travis-ci.com/wiggin77/cptree)
 
 cptree copies a tree of files and directories from one location to another.
 
 <!-- markdownlint-disable MD026 -->
-### Why create yet another file copy?
+## Why create yet another file copy?
 
 I need something that can run on a Linux-based NAS box where the rsync provided has been modified to not work correctly when copying from RAID volume to external drive attached via USB.
 
