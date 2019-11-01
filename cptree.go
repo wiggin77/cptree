@@ -59,6 +59,14 @@ func walkFunc(opts Opts, path string, info os.FileInfo, err error) error {
 		fmt.Print(msg)
 		err = copyFile(path, dstPath)
 		if err == nil {
+			if opts.perms {
+				err = os.Chmod(dstPath, info.Mode())
+				if err != nil {
+					fmt.Println(err)
+					fmt.Fprintf(os.Stderr, "%s: %v", dstPath, err)
+					return nil
+				}
+			}
 			fmt.Println("done")
 		} else {
 			fmt.Println(err)

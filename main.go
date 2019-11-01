@@ -17,6 +17,7 @@ const (
 // Opts contains options from the command line.
 type Opts struct {
 	update  bool
+	perms   bool
 	help    bool
 	version bool
 	src     string
@@ -26,6 +27,7 @@ type Opts struct {
 func main() {
 	opts := Opts{}
 	flag.BoolVar(&opts.update, "u", true, "update; copy files newer in src than dst")
+	flag.BoolVar(&opts.perms, "p", true, "copy permissions")
 	flag.BoolVar(&opts.help, "h", false, "display help")
 	flag.BoolVar(&opts.version, "version", false, "display version info")
 	flag.StringVar(&opts.src, "src", "", "src directory to copy")
