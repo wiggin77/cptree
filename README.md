@@ -12,11 +12,12 @@ I need something that can run on a Linux-based NAS box where the rsync provided 
 ```help
 ./cptree -h
   -dst string
-        destination directory
-  -h    display help
+      destination directory
+  -h  display help
+  -p  copy permissions (default true)
   -src string
-        src directory to copy
-  -u    update; copy files newer in src than dst (default true)
+      src directory to copy
+  -u  update; copy files newer in src than dst (default true)
   -version
-        display version info
+      display version info
 ```
